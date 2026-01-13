@@ -1,0 +1,661 @@
+/* ========================================
+   BASE DU SITE
+======================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #0a1b2c;
+  color: #eaeaea;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #102c44;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ff3c3c;
+  text-decoration: none; /* supprime le soulignement du lien */
+  cursor: pointer;       /* affiche la main au survol */
+  transition: color 0.3s;
+}
+
+.logo:hover {
+  color: #ffa0a0; /* change légèrement la couleur au survol */
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.nav a {
+  color: #b0c4d9;
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 0.9rem;
+}
+
+.nav a:hover {
+  color: #ffffff;
+}
+
+/* ========================================
+   HIGHLIGHT
+======================================== 
+.highlight {
+  background-color: rgba(0, 40, 70, 0.6);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+}*/
+
+/* ===== TENDANCES ===== */
+
+.trend-slider {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.trend-wrapper {
+  position: relative;
+}
+
+/* Flèches cachées par défaut (mobile) */
+.trend-arrow {
+  display: none;
+}
+
+.trend-track {
+  display: flex;
+}
+
+.trend-card {
+  min-width: 100%;
+  scroll-snap-align: center;
+  background-color: #102c44;
+  border-radius: 20px;
+  margin: 0 10px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.trend-card img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.trend-card h3 {
+  color: white;
+  padding: 12px;
+  margin: 0;
+}
+
+/* ===== DOTS ===== */
+
+.trend-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  opacity: 0.4;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.dot.active {
+  opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .trend-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .trend-wrapper {
+    max-width: 1000px;          /* ⬅️ fenêtre */
+    margin: 0 auto;
+    overflow: visible;      /* ⬅️ MASQUE TOUT */
+    position: center;
+    justify-content: center;
+  }
+
+  .trend-slider {
+    overflow: visible;
+    display: flex; /* ⬅️ clé du problème */
+    position: center;
+  }
+
+  .trend-card {
+    min-width: 15%;          /* ⬅️ carte plus petite */
+    max-width: 600px;
+    position: center;        /* ⬅️ limite propre */
+  }
+
+  .trend-card img {
+    min-height: 480px;          /* image moins haute */
+  }
+
+  .trend-dots {
+    display: none;
+  }
+}
+
+/* ========================================
+   HERO
+======================================== */
+.hero {
+  position: relative;
+  height: auto;
+  margin: 15px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background-image: url("https://i.etsystatic.com/27448597/r/il/d9d5b5/2934931410/il_570xN.2934931410_bz9g.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 20, 40, 0.);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-text {
+  background: rgba(0, 40, 70, 0.7);
+  padding: 25px 35px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.hero-text h1,
+.hero-text p {
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 2px 2px 5px #000;
+  font-family: 'Bangers', sans-serif;
+}
+/* ========================================
+   MEDIA QUERY PC (≥1024px)
+   Ombre floutée et hero plus large
+======================================== */
+@media (min-width: 1024px) {
+  .hero {
+    max-width: 800px;        /* plus large sur PC */
+    min-height: 200px;
+    max-height: 260px;
+  }
+
+  .hero::after {
+    background: rgb(7, 2, 77); /* overlay un peu plus sombre sur PC */
+  }
+
+  .hero-content {
+    max-width: 700px;
+    padding: 1.8rem 2.2rem;
+  }
+
+  /* Ombre floutée derrière le texte uniquement sur PC */
+  .hero-content::before {
+    content: "";
+    position: absolute;
+    inset: -14px;
+    background: rgba(0, 0, 0, 0.6);
+    filter: blur(22px);
+    z-index: -1;
+    border-radius: 14px;
+  }
+}
+
+/* ========================================
+   SECTIONS
+======================================== */
+.section {
+  padding: 40px 20px;
+}
+.h2 {
+  margin-bottom:20px;
+  text-align: center;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ========================================
+   GRID / CARTES
+======================================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* ⬅️ 2 cartes côte à côte */
+    max-width: 900px;                      /* ⬅️ centrées autour du milieu */
+    margin: 0 auto 20px auto;
+  }
+}
+
+
+.card {
+  background-color: #123456;
+  height: 180px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+}
+
+/* Animé card */
+.anime-card {
+  display: flex;
+  flex-direction: column;
+  height: 230px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  text-align: center;
+}
+
+.anime-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.anime-card img:hover {
+  transform: scale(1.05);
+}
+
+.anime-card h3 {
+  margin: 10px 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.anime-card-title h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+@media (min-width: 1024px) {
+
+  .anime-card {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .anime-card a {
+    display: block;        /* 🔥 TRÈS IMPORTANT */
+    width: 100%;
+  }
+
+  .anime-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;        /* 🔥 enlève espaces fantômes */
+  }
+
+  .anime-card h3 {
+    flex: 1;
+    margin: 0;
+    padding: 10px 0;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
+
+
+
+/* Slider mangas */
+.slider-title {
+  margin: 0 0 12px 0;        /* enlève l’espace inutile au-dessus */
+  color: #b0c4d9;
+  text-align: left;         /* ⬅️ gauche */
+  padding-left: 10px;       /* léger alignement avec les cartes */
+}
+
+.manga-slider {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 0 10px 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.manga-card {
+  min-width: 140px;
+  background: #102c44;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  scroll-snap-align: start;
+  transition: transform 0.3s;
+}
+
+.manga-card:hover {
+  transform: scale(1.05);
+}
+
+.manga-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.manga-card p {
+  margin: 8px 0;
+  font-size: 0.9rem;
+}
+.top-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #b0c4d9;
+  letter-spacing: 1px;
+}
+
+@media (min-width: 1024px) {
+
+  .manga-slider {
+    max-height: 500px;
+    max-width: 900px;      /* ⬅️ largeur contrôlée */
+    margin: 30px auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .slider-title {
+    max-width: 900px;       /* même largeur que le slider */
+    margin: 0 auto 16px;    /* centré horizontalement */
+    padding-left: 0;        /* plus propre sur PC */
+  }
+
+}
+
+.classement-grid {
+  grid-template-columns: repeat(2, minmax(120px, 180px));
+  justify-content: center;
+  gap: 20px;
+}
+
+.classement-card {
+  height: 100px;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.classement-card:hover {
+  transform: scale(1.05);
+  background: #1a3f66;
+}
+.top-month-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.6rem;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.classement-img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+.image-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (min-width: 1024px) {
+
+  .classement-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 vraies colonnes */
+    max-width: 900px;                      /* centré, pas full écran */
+    margin: 0 auto;
+    gap: 30px;
+  }
+
+  .classement-card {
+    height: 160px;                         /* ⬅️ plus grand */
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 1.1rem;
+  }
+
+  .classement-img {
+    width: 150px;                          /* ⬅️ image BEAUCOUP plus grande */
+    height: 50px;
+    object-fit: cover;                     /* ⬅️ remplit bien */
+    margin-bottom: 0;
+    flex-shrink: 0;                        /* ⬅️ empêche le rétrécissement */
+  }
+
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #102c44;
+  color: #777;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .anime-card img,
+  .manga-card img {
+    height: auto;
+    max-height: 180px;
+  }
+}
+/* ========================================
+   ANIME SAISON PAGE
+======================================== */
+.anime-season-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.anime-season-card {
+  background: #102c44;
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.anime-season-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.anime-season-card h3 {
+  margin: 10px 0 5px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.anime-season-card p {
+  margin: 0;
+  color: #cfd9e3;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.intro-text {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  color: #b0c4d9;
+}
+.anime-season-card a {
+  color: #ff3c3c;
+  text-decoration: none;
+}
+
+.anime-season-card a:hover {
+  text-decoration: underline;
+}
+.more-info {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.more-info a {
+  color: #ff3c3c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.more-info a:hover {
+  text-decoration: underline;
+}
+/* ========================================
+  BACK TO TOP
+======================================== */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  background-color: #102c44;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#backToTop:hover {
+  background-color: #102c44;
+  transform: translateY(-3px);
+}
+
+#backToTop img {
+  width: 25px;   /* ajuste la taille de l’image */
+  height: 25px;
+  pointer-events: none; /* pour que le clic sur l’image déclenche le bouton */
+}
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #071522;
+  color: #777;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+  .anime-image {
+    height: 220px;
+  }
+}
+#theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: transform 0.3s;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.2);
+}
